@@ -25,7 +25,10 @@ jobs:
           pip install pytest selenium requests pytest-html webdriver-manager
 
       - name: 安装 Chrome
-        uses: browser-actions/setup-chrome@v1
+        run: |
+          wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          google-chrome --version
 
       - name: 运行测试（仅 API 测试，不需要浏览器）
         run: |
