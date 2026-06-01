@@ -13,9 +13,14 @@ with open(json_path, encoding="utf-8") as f:
 @pytest.fixture(scope='session')
 def browser():
     options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+
+    # CI 环境（GitHub Actions）用无头模式
+    if os.environ.get("CI"):
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+    else:
+        options.add_experimental_option('detach', True)
 
     local_path = r'F:\Pys\chromedriver.exe'
     if os.path.exists(local_path):
