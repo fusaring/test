@@ -30,9 +30,9 @@ jobs:
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
           google-chrome --version
 
-      - name: 运行测试（仅 API 测试，不需要浏览器）
+      - name: 运行测试
         run: |
-          pytest tests/test_book_api.py -v --html=report/report.html --self-contained-html
+          pytest tests/ -v --html=report/report.html --self-contained-html
         continue-on-error: true
 
       - name: 上传测试报告
