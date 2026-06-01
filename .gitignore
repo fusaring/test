@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 环境
+venv/
+.env
+
+# 浏览器驱动
+chromedriver.exe
+chromedriver
+
+# 测试报告
+report/
+screenshots/
+
+# IDE
+.vscode/
+.idea/
+
+# 截图
+*.png
+*.jpg
+
+# 系统
+Thumbs.db
+.DS_Store
