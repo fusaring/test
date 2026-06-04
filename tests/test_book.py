@@ -17,8 +17,9 @@ class TestSearchBook:
         from selenium.webdriver.common.by import By
         search_page = SearchBook(browser)
         search_page.search(book_data["keyword"])
-        WebDriverWait(browser, 5).until(
-                EC.visibility_of_element_located((By.CLASS_NAME, "card-title")))
+        # 等搜索结果加载完毕（等关键词的前两个字出现就说明搜到了）
+        WebDriverWait(browser, 10).until(
+            EC.text_to_be_present_in_element((By.TAG_NAME, "body"), book_data["keyword"][:2]))
         assert book_data["keyword"] in browser.page_source, f"搜索结果中应包含'{book_data['keyword']}'"
 
     # def test_index(self, browser):  

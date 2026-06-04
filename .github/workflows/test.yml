@@ -41,10 +41,3 @@ jobs:
         with:
           name: 测试报告
           path: report/
-
-      - name: 部署报告到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./report
-          destination_dir: report
