@@ -29,6 +29,9 @@ class BookHomePage:
         search_box.clear()
         search_box.send_keys(keyword)
         self.driver.find_element(*self.search_button).click()
+        # 等搜索结果加载
+        WebDriverWait(self.driver, 10).until(
+            EC.text_to_be_present_in_element((By.TAG_NAME, "body"), keyword[:2]))
 
     def get_book_names(self):
         """获取当前页面显示的所有书名"""
