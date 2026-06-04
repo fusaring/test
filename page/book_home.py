@@ -17,6 +17,9 @@ class BookHomePage:
 
     def open(self):
         self.driver.get("https://yileila.top/flask/book/")
+        # 等页面标题加载完成，确保不是上一个测试的残留页面
+        WebDriverWait(self.driver, 10).until(
+            EC.title_contains("小说书架"))
 
     def get_title(self):
         return self.driver.title

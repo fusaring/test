@@ -25,7 +25,7 @@ class TestBookAPI:
             assert keyword in resp.text
         else:
             assert keyword not in resp.text
-
+    @pytest.mark.resapi
     def test_read_page_api(self):
         """测试阅读页面API"""
         resp = requests.get(f"{BASE_URL}/book/read/4/2", timeout=10)
