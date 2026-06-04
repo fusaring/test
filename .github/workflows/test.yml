@@ -5,7 +5,7 @@ on:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
-  workflow_dispatch:  # 手动触发
+  workflow_dispatch:
 
 jobs:
   test:
@@ -24,10 +24,11 @@ jobs:
         run: |
           pip install pytest selenium requests pytest-html webdriver-manager
 
-      - name: 安装 Chrome
+      - name: 安装 Chrome 和字体
         run: |
           wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          sudo apt install -y fonts-wqy-microhei fonts-noto-cjk
           google-chrome --version
 
       - name: 运行测试
@@ -40,3 +41,10 @@ jobs:
         with:
           name: 测试报告
           path: report/
+
+      - name: 部署报告到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./report
+          destination_dir: report
