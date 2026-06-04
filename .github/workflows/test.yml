@@ -33,7 +33,7 @@ jobs:
           sudo apt install -y fonts-wqy-microhei
       - name: 运行测试
         run: |
-          pytest tests/test_book_api.py tests/test_book.py -v --html=report/report.html --self-contained-html
+          pytest tests/ -v --html=report/report.html --self-contained-html
         continue-on-error: true
       - name: 上传 Pages 报告
         uses: actions/upload-pages-artifact@v3
