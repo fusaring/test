@@ -14,9 +14,11 @@ class SearchBook:
         self.driver.get("https://yileila.top/flask/book/")
         self.driver.implicitly_wait(10)  # 隐式等待，最长等待10秒，直到元素出现
     def input_search(self, text):
-        WebDriverWait(self.driver, 10).until(
+        search_input = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(self.search_input)
-        ).send_keys(text)
+        )
+        search_input.clear()  # 先清空
+        search_input.send_keys(text)
     def click_search(self):
         self.driver.find_element(*self.search_button).click()
     # def add_to_cart(self):
